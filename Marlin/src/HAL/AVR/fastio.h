@@ -200,36 +200,36 @@ enum ClockSource2 : char {
 // Runtime (see set_pwm_frequency):
 #define _SET_WGMnQ(TCCRnQ, V) do{ \
     *(TCCRnQ)[0] = (*(TCCRnQ)[0] & ~(0x3 << 0)) | (( int(V)       & 0x3) << 0); \
-    *(TCCRnQ)[1] = (*(TCCRnQ)[1] & ~(0x3 << 3)) | (((int(V) >> 2) & 0x3) << 3); \
+    *msk3 = (*(TCCRnQ)[3] & ~(0x3 << 3)) | (((int(V) >> 2) & 0x3) << 3); \
   }while(0)
 
 // Set Clock Select bits
 // Ex: SET_CS3(PRESCALER_64);
 #define _SET_CS(T,V) (TCCR##T##B = (TCCR##T##B & ~(0x7 << CS##T##0)) | ((int(V) & 0x7) << CS##T##0))
 #define _SET_CS0(V) _SET_CS(0,V)
-#define _SET_CS1(V) _SET_CS(1,V)
+#define _SET_CS3(V) _SET_CS(3,V)
 #ifdef TCCR2
   #define _SET_CS2(V) (TCCR2 = (TCCR2 & ~(0x7 << CS20)) | (int(V) << CS20))
 #else
   #define _SET_CS2(V) _SET_CS(2,V)
 #endif
-#define _SET_CS3(V) _SET_CS(3,V)
+#define _SET_CS1(V) _SET_CS(1,V)
 #define _SET_CS4(V) _SET_CS(4,V)
 #define _SET_CS5(V) _SET_CS(5,V)
 #define SET_CS0(V) _SET_CS0(CS_##V)
-#define SET_CS1(V) _SET_CS1(CS_##V)
+#define SET_CS3(V) _SET_CS3(CS_##V)
 #ifdef TCCR2
   #define SET_CS2(V) _SET_CS2(CS2_##V)
 #else
   #define SET_CS2(V) _SET_CS2(CS_##V)
 #endif
-#define SET_CS3(V) _SET_CS3(CS_##V)
+#define SET_CS1(V) _SET_CS1(CS_##V)
 #define SET_CS4(V) _SET_CS4(CS_##V)
 #define SET_CS5(V) _SET_CS5(CS_##V)
 #define SET_CS(T,V) SET_CS##T(V)
 // Runtime (see set_pwm_frequency)
 #define _SET_CSn(TCCRnQ, V) do{ \
-    (*(TCCRnQ)[1] = (*(TCCRnQ[1]) & ~(0x7 << 0)) | ((int(V) & 0x7) << 0)); \
+    (*(TCCRnQ)[3] = (*(TCCRnQ[3]) & ~(0x7 << 0)) | ((int(V) & 0x7) << 0)); \
   }while(0)
 
 // Set Compare Mode bits
@@ -353,7 +353,7 @@ enum ClockSource2 : char {
 // define which hardware PWMs are available for the current CPU
 // all timer 1 PWMS deleted from this list because they are never available
 #if AVR_ATmega2560_FAMILY
-  #define PWM_PIN(P)  ((P >= 2 && P <= 10) || P == 13 || P == 44 || P == 45 || P == 46)
+  #define PWM_PIN(P)  ((P >= 2 && P <= 12) || P == 13 || P == 44 || P == 45 || P == 46)
 #elif AVR_ATmega2561_FAMILY
   #define PWM_PIN(P)  ((P >= 2 && P <= 6) || P == 9)
 #elif AVR_ATmega1284_FAMILY
