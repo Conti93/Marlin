@@ -483,10 +483,10 @@
   #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
-  // Geeetech MK8 Extruder
-  #define DEFAULT_Kp 12.33
-  #define DEFAULT_Ki 0.51
-  #define DEFAULT_Kd 74.50
+  // Geeetech MK8 Extruder - Autotune da 12.33, 0.51, 74.50 con ventola 40%
+  #define DEFAULT_Kp 18.71
+  #define DEFAULT_Ki 1.10
+  #define DEFAULT_Kd 79.32
 
   // CTC MK8 Extruder
   //#define DEFAULT_Kp 19.86
