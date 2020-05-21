@@ -74,7 +74,9 @@ void GcodeSuite::M710() {
   const bool seenD = parser.seenval('D');
   if (seenD) controllerFan.settings.duration = parser.value_ushort();
 
-  if (!(seenR || seenS || seenI || seenA || seenD))
+  if (seenR || seenS || seenI || seenA || seenD)
+    controllerFan.update();
+  else
     M710_report(false);
 }
 
