@@ -21,6 +21,7 @@
  */
 #pragma once
 
+<<<<<<< HEAD
 #include "../inc/MarlinConfigPre.h"
 
 typedef struct {
@@ -74,3 +75,6 @@ class ControllerFan {
 extern ControllerFan controllerFan;
 
 #endif
+=======
+void controllerfan_update();
+>>>>>>> parent of 83eec683c... New Controller Fan options and M710 gcode (#17149)
