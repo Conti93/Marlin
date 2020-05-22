@@ -122,19 +122,6 @@
   #include "../feature/probe_temp_comp.h"
 #endif
 
-<<<<<<< HEAD
-#include "../feature/controllerfan.h"
-#if ENABLED(CONTROLLER_FAN_EDITABLE)
-  void M710_report(const bool forReplay);
-#endif
-
-#define HAS_CASE_LIGHT_BRIGHTNESS (ENABLED(CASE_LIGHT_MENU) && DISABLED(CASE_LIGHT_NO_BRIGHTNESS))
-#if HAS_CASE_LIGHT_BRIGHTNESS
-  #include "../feature/caselight.h"
-#endif
-
-=======
->>>>>>> parent of 83eec683c... New Controller Fan options and M710 gcode (#17149)
 #pragma pack(push, 1) // No padding between variables
 
 typedef struct { uint16_t X, Y, Z, X2, Y2, Z2, Z3, Z4, E0, E1, E2, E3, E4, E5; } tmc_stepper_current_t;
